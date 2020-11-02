@@ -1,60 +1,40 @@
 <template>
-  <div id="app">
-    @{{user.username}} - {{fullName}}
-    <strong>followers:</strong> {{followers}}
-    <button @click="followUser">
-      Follow
-    </button>
-  </div>
+  <UserProfile />
 </template>
 
 <script>
+import UserProfile from "./components/UserProfile";
 export default {
-  name: 'App',
-  data() {
-    return {
-      followers: 0,
-      user: {
-        id: 1,
-        username: "Samudra_arq",
-        firstName: "Samudra",
-        lastName: "Arqam",
-        email: "samudrafaris@gmail.com",
-        isAdmin: true
-      }
-    }
+  name: "App",
+  components: {
+    UserProfile,
   },
-  watch: {
-    followers(newFollowerCount, oldFollowerCount) {
-      if (oldFollowerCount < newFollowerCount) {
-        console.log(`${this.user.username} has gain a follower!`);
-      }
-    }
-  },
-  computed: {
-    fullName() {
-      return `${this.user.firstName} ${this.user.lastName}`
-    }
-  },
-  methods: {
-    followUser() {
-      this.followers++
-    }
-  },
-  mounted() {
-    this.followUser();
-  }
-}
+};
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 62.5%;
+  background: #f3f3f3;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 10rem 1fr 10rem;
+  justify-items: start;
+  margin-top: 2rem;
+}
+
+#app > * {
+  grid-column: 2 / -2;
 }
 </style>
